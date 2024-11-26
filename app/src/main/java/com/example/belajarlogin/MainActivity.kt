@@ -1,10 +1,10 @@
 package com.example.belajarlogin
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 import androidx.lifecycle.lifecycleScope
 import com.example.belajarlogin.databinding.ActivityMainBinding
 import com.example.belajarlogin.presentation.viewmodel.AuthViewModelImpl
@@ -19,13 +19,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lifecycleScope.launch{
+        lifecycleScope.launchWhenStarted {
+            viewModel.userName.collect { result ->
+                Log.d("MainActivity", "userName collected: $result")
+                binding.tvHome.text = result ?: "No User"
+            }
+        }
+        lifecycleScope.launch {
             viewModel.fetchUserName()
+        }
 
-        }
-        viewModel.userName.value?.let{
-            binding.tvHome.text = it
-        }
 
     }
 }

@@ -6,6 +6,7 @@ import com.example.belajarlogin.data.repository.AuthRepositoryImpl
 import com.example.belajarlogin.data.storage.AuthPreference
 import com.example.belajarlogin.domain.repository.AuthRepository
 import com.example.belajarlogin.domain.usecase.authUseCase.GetTokenUseCase
+import com.example.belajarlogin.domain.usecase.authUseCase.GetUserNameCase
 import com.example.belajarlogin.domain.usecase.authUseCase.LoginUseCase
 import com.example.belajarlogin.domain.usecase.authUseCase.RegisterUseCase
 import com.example.belajarlogin.presentation.viewmodel.AuthViewModel
@@ -19,6 +20,7 @@ val userModule = module{
     single{ GetTokenUseCase(get()) }
     single{ LoginUseCase(get()) }
     single{ RegisterUseCase(get()) }
+    single{ GetUserNameCase(get()) }
     single{ AuthPreference(get()) }
 
     viewModel{ AuthViewModelImpl(get(), get(), get(),get()) }

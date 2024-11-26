@@ -1,5 +1,7 @@
 package com.example.belajarlogin.presentation.viewmodel
 
+
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.belajarlogin.core.utils.ResultUtil
@@ -8,7 +10,7 @@ import com.example.belajarlogin.domain.usecase.authUseCase.GetTokenUseCase
 import com.example.belajarlogin.domain.usecase.authUseCase.GetUserNameCase
 import com.example.belajarlogin.domain.usecase.authUseCase.LoginUseCase
 import com.example.belajarlogin.domain.usecase.authUseCase.RegisterUseCase
-import kotlinx.coroutines.flow.Flow
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -42,8 +44,9 @@ class AuthViewModelImpl(private val getTokenUseCase: GetTokenUseCase, private va
        getUserNameCase().collect{
            result ->
            _userName.value=result
+
        }
-        return userName.toString()
+        return userName.value ?: ""
     }
 
 
