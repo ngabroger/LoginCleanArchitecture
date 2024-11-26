@@ -1,35 +1,20 @@
 package com.example.belajarlogin.data.api
 
-import com.example.belajarlogin.data.storage.AuthPreference
-import com.google.gson.GsonBuilder
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.mp.KoinPlatform.getKoin
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import com.example.belajarlogin.BuildConfig
-import retrofit2.create
+import com.example.belajarlogin.data.model.LoginResponse
+import retrofit2.Response
 
-class ApiService {
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
-    fun getApiService(): ApiService{
-        val loggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-        val authPreferences: AuthPreference = getKoin().get()
-        val authInterceptor = AuthInterceptor(authPreferences)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-        if (!client.interceptors().contains(authInterceptor)){
-            client.addInterceptor(authInterceptor)
-        }
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.DICODING_API)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-    return retrofit.create(ApiService::class.java)
 
-    }
+interface ApiService {
+
+    @FormUrlEncoded
+    @POST("login")
+    suspend fun login(@Field("email") email:String , @Field("password") password:String): Response<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("register")
+    suspend fun register(@Field("name") name:String , @Field("email") email:String , @Field("password") password:String): Response<LoginResponse>
 }

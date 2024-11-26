@@ -14,7 +14,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "DICODING_API", "\"https://story-api.dicoding.dev/v1\"")
+        buildConfigField("String", "DICODING_API", "\"https://story-api.dicoding.dev/v1/\"")
     }
 
     buildTypes {

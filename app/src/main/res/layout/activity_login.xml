@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDC8C8"
+    tools:context=".presentation.screen.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <EditText
+        android:id="@+id/edEmailTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/edPasswordTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edEmailTxt"
+        app:layout_constraintStart_toStartOf="@+id/edEmailTxt"
+        app:layout_constraintTop_toBottomOf="@+id/edEmailTxt" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="@+id/edPasswordTxt"
+        app:layout_constraintStart_toStartOf="@+id/edPasswordTxt"
+        app:layout_constraintTop_toBottomOf="@+id/edPasswordTxt" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Don't Have Account ? Register Now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AB090909"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_error" />
+
+                <TextView
+                    android:id="@+id/tv_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_marginTop="14dp"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toStartOf="@+id/imageView3"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+                <Button
+                    android:id="@+id/btnDismiss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Dissmiss"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_error"
+                    app:layout_constraintStart_toStartOf="@+id/tv_error"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_error" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
