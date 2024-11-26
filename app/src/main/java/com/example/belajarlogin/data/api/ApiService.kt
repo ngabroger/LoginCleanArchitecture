@@ -1,6 +1,7 @@
 package com.example.belajarlogin.data.api
 
 import com.example.belajarlogin.data.model.LoginResponse
+import com.example.belajarlogin.data.model.RegisterResponse
 import retrofit2.Response
 
 import retrofit2.http.Field
@@ -16,5 +17,5 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("register")
-    suspend fun register(@Field("name") name:String , @Field("email") email:String , @Field("password") password:String): Response<LoginResponse>
+    suspend fun register(@Field("name") name:String , @Field("email") email:String , @Field("password") password:String): Response<RegisterResponse>
 }

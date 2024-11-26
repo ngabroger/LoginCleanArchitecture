@@ -49,7 +49,11 @@ class AuthViewModelImpl(private val getTokenUseCase: GetTokenUseCase, private va
         email: String,
         password: String
     ) {
-        TODO("Not yet implemented")
+       viewModelScope.launch{
+           registerUseCase(name,email,password).collect{
+               result -> _register.value =result
+           }
+       }
     }
 
     override suspend fun fetchUserName(): String{

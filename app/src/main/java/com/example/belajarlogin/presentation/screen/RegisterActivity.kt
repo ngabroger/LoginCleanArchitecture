@@ -49,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
                 else ->{
                     lifecycleScope.launch {
-                        viewModel.register(email.text.toString(), password.text.toString(), username.text.toString())
+                        viewModel.register(username.text.toString(), email.text.toString(), password.text.toString())
                     }
                 }
             }
@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                     is ResultUtil.Success -> {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(this@RegisterActivity, result.data.toString() , Toast.LENGTH_SHORT).show()
-                        Intent(this@RegisterActivity, MainActivity::class.java).also {
+                        Intent(this@RegisterActivity, LoginActivity::class.java).also {
                             startActivity(it)
                             finish()}
                     }
