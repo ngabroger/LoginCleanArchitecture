@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#AB090909"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.cardview.widget.CardView
             android:layout_width="350dp"
@@ -96,9 +96,10 @@
 
                 <TextView
                     android:id="@+id/tv_error"
-                    android:layout_width="wrap_content"
-                    android:layout_height="19dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:padding="0dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView3"

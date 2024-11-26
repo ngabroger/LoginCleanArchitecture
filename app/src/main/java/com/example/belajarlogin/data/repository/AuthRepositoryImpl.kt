@@ -1,5 +1,6 @@
 package com.example.belajarlogin.data.repository
 
+import android.util.Log
 import com.example.belajarlogin.core.utils.ResultUtil
 import com.example.belajarlogin.data.api.ApiService
 import com.example.belajarlogin.data.model.LoginResponse
@@ -8,6 +9,7 @@ import com.example.belajarlogin.domain.repository.AuthRepository
 import com.example.belajarlogin.domain.repository.TokenStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import org.json.JSONObject
 
 class AuthRepositoryImpl(private val apiService: ApiService, private val tokenStorage: TokenStorage) : AuthRepository {
 
@@ -33,8 +35,24 @@ class AuthRepositoryImpl(private val apiService: ApiService, private val tokenSt
                     }
                     emit(ResultUtil.Success(listOf()))
 
+                }else{
+                    val errorBody = response.errorBody()?.string()
+                    val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                        try {
+
+                            val jsonObject = JSONObject(errorBody)
+                            val message = jsonObject.optJSONObject("error")?.optString("message") ?: "Unknown error"
+                            message
+                        } catch (e: Exception) {
+                            "Error occurred while parsing error body"
+                        }
+                    } else {
+                        "Login Failed: No Error Body"
+                    }
+                    emit(ResultUtil.Error(errorMessage))
                 }
             }catch (e: Exception){
+                Log.e("LoginRepositoryImpl", "Exception: ${e.message}", e)
                 emit(ResultUtil.Error("Exception occurred: ${e.message}"))
 
             }
