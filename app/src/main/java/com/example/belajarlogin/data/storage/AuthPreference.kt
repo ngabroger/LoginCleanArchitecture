@@ -25,15 +25,21 @@ class AuthPreference (private val dataStore: DataStore<Preferences>): TokenStora
         }
     }
 
-    override suspend fun getToken(): String? {
+    override suspend fun getToken(): Flow<String?> {
         return dataStore.data.map {
             it[AUTH_TOKEN_KEY]
-        }.firstOrNull()
+        }
     }
 
     override suspend fun getName(): Flow<String?> {
        return dataStore.data.map {
               it[AUTH_NAME_KEY]
+       }
+    }
+
+    override suspend fun clearToken() {
+       dataStore.edit {
+              it.clear()
        }
     }
 }

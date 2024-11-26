@@ -9,4 +9,7 @@ interface AuthViewModel {
 
     suspend fun fetchUserName(): String?
 
+    fun getToken(): Flow<String?>
+
+    suspend fun logout()
 }

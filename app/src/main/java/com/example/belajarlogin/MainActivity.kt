@@ -24,9 +24,17 @@ class MainActivity : AppCompatActivity() {
                 Log.d("MainActivity", "userName collected: $result")
                 binding.tvHome.text = result ?: "No User"
             }
+            viewModel.token.collect{result ->
+                if (result != null){
+                    Log.d("MainActivity", "Token collected: $result")
+                }else{
+                    finish()
+                }
+            }
         }
         lifecycleScope.launch {
             viewModel.fetchUserName()
+            viewModel.getToken()
         }
 
 

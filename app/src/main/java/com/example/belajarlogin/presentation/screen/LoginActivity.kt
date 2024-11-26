@@ -3,6 +3,7 @@ package com.example.belajarlogin.presentation.screen
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -26,6 +27,18 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupListeners()
         observeViewModel()
+
+        lifecycleScope.launch{
+            viewModel.getToken().collect{
+                if(it!=null){
+                    Intent(this@LoginActivity, MainActivity::class.java).also {
+                        startActivity(it)
+                        finish()
+                    }
+                }
+            }
+        }
+
 
     }
 
@@ -57,6 +70,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+
+
         }
 
     }
@@ -65,6 +80,12 @@ class LoginActivity : AppCompatActivity() {
         binding.progressBar.visibility = View.GONE
         binding.btnDismiss.setOnClickListener {
             binding.clError.visibility = View.GONE
+        }
+
+        binding.navRegister.setOnClickListener {
+            Intent(this, RegisterActivity::class.java).also {
+                startActivity(it)
+            }
         }
 
         binding.btnLogin.setOnClickListener {

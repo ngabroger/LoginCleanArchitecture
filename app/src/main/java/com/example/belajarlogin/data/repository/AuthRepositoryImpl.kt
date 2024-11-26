@@ -13,7 +13,6 @@ import org.json.JSONObject
 
 class AuthRepositoryImpl(private val apiService: ApiService, private val tokenStorage: TokenStorage) : AuthRepository {
 
-
     override suspend fun login(
         email: String,
         password: String
@@ -80,11 +79,17 @@ class AuthRepositoryImpl(private val apiService: ApiService, private val tokenSt
         }
     }
 
-    override suspend fun getAuthToken(): String? {
+    override suspend fun getAuthToken(): Flow<String?> {
         return tokenStorage.getToken()
     }
 
     override suspend fun getName(): Flow<String?> {
         return tokenStorage.getName()
     }
+
+    override suspend fun logout() {
+        tokenStorage.clearToken()
+    }
+
+
 }
