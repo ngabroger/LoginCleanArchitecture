@@ -6,4 +6,7 @@ class GetTokenUseCase (private val authRepository: AuthRepository){
     suspend fun getToken(): String? {
         return authRepository.getAuthToken()
     }
+
+
+
 }

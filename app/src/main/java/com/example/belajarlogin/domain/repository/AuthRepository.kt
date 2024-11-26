@@ -9,4 +9,5 @@ interface AuthRepository {
     suspend fun login(email: String, password: String): Flow<ResultUtil<List<LoginResponse>>>
     suspend fun register(name: String, email: String, password: String): Flow<ResultUtil<List<RegisterResponse>>>
     suspend fun getAuthToken(): String?
+    suspend fun getName(): Flow<String?>
 }

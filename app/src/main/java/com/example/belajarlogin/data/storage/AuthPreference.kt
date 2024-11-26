@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.belajarlogin.domain.repository.TokenStorage
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
@@ -14,10 +15,13 @@ class AuthPreference (private val dataStore: DataStore<Preferences>): TokenStora
 
     companion object {
         private val AUTH_TOKEN_KEY = stringPreferencesKey("auth_token")
+        private val AUTH_NAME_KEY = stringPreferencesKey("auth_name")
     }
-    override suspend fun saveToken(token: String) {
+    override suspend fun saveToken(token: String, name: String) {
         dataStore.edit {
             it[AUTH_TOKEN_KEY] = token
+            it[AUTH_NAME_KEY] = name
+
         }
     }
 
@@ -25,5 +29,11 @@ class AuthPreference (private val dataStore: DataStore<Preferences>): TokenStora
         return dataStore.data.map {
             it[AUTH_TOKEN_KEY]
         }.firstOrNull()
+    }
+
+    override suspend fun getName(): Flow<String?> {
+       return dataStore.data.map {
+              it[AUTH_NAME_KEY]
+       }
     }
 }

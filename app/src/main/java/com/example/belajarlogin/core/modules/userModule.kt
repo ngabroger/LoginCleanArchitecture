@@ -21,6 +21,6 @@ val userModule = module{
     single{ RegisterUseCase(get()) }
     single{ AuthPreference(get()) }
 
-    viewModel{ AuthViewModelImpl(get(), get(), get()) }
+    viewModel{ AuthViewModelImpl(get(), get(), get(),get()) }
 
 }

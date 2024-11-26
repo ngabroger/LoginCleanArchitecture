@@ -28,7 +28,7 @@ class AuthRepositoryImpl(private val apiService: ApiService, private val tokenSt
                         emit(ResultUtil.Error("Login Failed"))
                     }
                     data?.token?.let {
-                        tokenStorage.saveToken(it.toString())
+                        tokenStorage.saveToken(it.toString(),data.name.toString())
                     }?: run {
                         emit(ResultUtil.Error("Login Failed"))
                         return@flow
@@ -82,5 +82,9 @@ class AuthRepositoryImpl(private val apiService: ApiService, private val tokenSt
 
     override suspend fun getAuthToken(): String? {
         return tokenStorage.getToken()
+    }
+
+    override suspend fun getName(): Flow<String?> {
+        return tokenStorage.getName()
     }
 }
